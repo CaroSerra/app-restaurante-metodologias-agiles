@@ -12,4 +12,11 @@
     <string name="cd_facebook">Iniciar sesión con Facebook</string>
     <string name="cd_apple">Iniciar sesión con Apple</string>
     <string name="cd_x">Iniciar sesión con X</string>
+
+    <!-- Registro -->
+    <string name="registro_title">Registro</string>
+    <string name="registro_nombre_hint">Nombre</string>
+    <string name="registro_apellido_hint">Apellido</string>
+    <string name="registro_button">Registrar</string>
+    <string name="registro_ok">¡Su cuenta ha sido creada con éxito!</string>
 </resources>
