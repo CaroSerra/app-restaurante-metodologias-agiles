@@ -1,19 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingBottom="24dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="@string/login_title"
+            android:textColor="@color/verde_950"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+        <!-- Email -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEmail"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            app:boxBackgroundColor="@color/neutral_075"
+            app:boxCornerRadiusBottomEnd="4dp"
+            app:boxCornerRadiusBottomStart="4dp"
+            app:boxCornerRadiusTopEnd="4dp"
+            app:boxCornerRadiusTopStart="4dp"
+            app:boxStrokeColor="@color/neutral_250"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:hint="@string/login_email_hint"
+                android:inputType="textEmailAddress"
+                android:paddingVertical="0dp"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_placeholder"
+                android:textSize="22sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Contraseña (el ojo lo pone Material con password_toggle) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPassword"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            app:boxBackgroundColor="@color/neutral_075"
+            app:boxCornerRadiusBottomEnd="4dp"
+            app:boxCornerRadiusBottomStart="4dp"
+            app:boxCornerRadiusTopEnd="4dp"
+            app:boxCornerRadiusTopStart="4dp"
+            app:boxStrokeColor="@color/neutral_250"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/text_placeholder"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:hint="@string/login_password_hint"
+                android:inputType="textPassword"
+                android:paddingVertical="0dp"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_placeholder"
+                android:textSize="22sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- ¿No tiene cuenta? Crear una. -->
+        <TextView
+            android:id="@+id/tvCrearCuenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="4dp"
+            android:text="@string/login_no_account"
+            android:textColor="@color/neutral_650"
+            android:textSize="16sp" />
+
+        <!-- O iniciar sesión con: -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="@string/login_social_title"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <!-- Línea verde -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/divider" />
+
+        <!-- Iconos sociales -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnGoogle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cd_google"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_google" />
+
+            <ImageButton
+                android:id="@+id/btnFacebook"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cd_facebook"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_facebook" />
+
+            <ImageButton
+                android:id="@+id/btnApple"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cd_apple"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_apple" />
+
+            <ImageButton
+                android:id="@+id/btnX"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cd_x"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_x" />
+        </LinearLayout>
+
+        <!-- Botón principal -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnIniciarSesion"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:minWidth="100dp"
+            android:paddingHorizontal="16dp"
+            android:text="@string/login_button"
+            android:textAllCaps="false"
+            android:textColor="@color/neutral_075"
+            android:textSize="16sp"
+            app:backgroundTint="@color/verde_950"
+            app:cornerRadius="12dp" />
+
+    </LinearLayout>
+</ScrollView>

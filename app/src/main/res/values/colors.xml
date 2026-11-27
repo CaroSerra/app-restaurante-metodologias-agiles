@@ -2,4 +2,51 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- ===== Paleta Figma: Neutrals Colors ===== -->
+    <color name="neutral_950">#0F1311</color>
+    <color name="neutral_650">#303030</color>
+    <color name="neutral_550">#999C9A</color>
+    <color name="neutral_250">#CBCFCD</color>
+    <color name="neutral_075">#F7F7F7</color>
+    <color name="neutral_000">#00FFFFFF</color>
+
+    <!-- ===== Paleta Figma: Principal (Verde) ===== -->
+    <color name="verde_950">#0B8302</color>
+    <color name="verde_850">#0FB403</color>
+    <color name="verde_800">#03B45C</color>
+    <color name="verde_750">#57C762</color>
+    <color name="verde_650">#7DD486</color>
+    <color name="verde_550">#A3E1A9</color>
+    <color name="verde_450">#C9EDCD</color>
+    <color name="verde_350">#F0FAF1</color>
+
+    <!-- ===== Paleta Figma: Others (Rojo) ===== -->
+    <color name="rojo_950">#FF0000</color>
+    <color name="rojo_850">#F42525</color>
+    <color name="rojo_750">#F04242</color>
+    <color name="rojo_650">#F65555</color>
+    <color name="rojo_550">#F76E6E</color>
+    <color name="rojo_450">#FA9E9E</color>
+
+    <!-- ===== Paleta Figma: Others (Amarillo) ===== -->
+    <color name="amarillo_955">#FFAA00</color>
+    <color name="amarillo_950">#FFE100</color>
+    <color name="amarillo_850">#F9E806</color>
+    <color name="amarillo_750">#F5EF3D</color>
+    <color name="amarillo_650">#F0EC75</color>
+    <color name="amarillo_550">#F0E775</color>
+    <color name="amarillo_450">#F7F5BA</color>
+
+    <!-- ===== Colores por uso (tema y layouts) ===== -->
+    <color name="primary_green">@color/verde_950</color>
+    <color name="on_primary">@color/white</color>
+    <color name="background">@color/white</color>
+    <color name="field_background">@color/neutral_075</color>
+    <color name="field_border">@color/neutral_250</color>
+    <color name="text_primary">@color/neutral_950</color>
+    <color name="text_secondary">@color/neutral_650</color>
+    <color name="text_hint">@color/neutral_550</color>
+    <color name="text_placeholder">#717070</color>
+    <color name="divider">@color/verde_950</color>
 </resources>

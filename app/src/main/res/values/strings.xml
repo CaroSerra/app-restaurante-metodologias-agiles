@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">ApptosMetodologias</string>
+
+    <string name="login_title">Inicio de Sesión</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Contraseña</string>
+    <string name="login_no_account"><i>¿No tiene cuenta? <b><u>Crear una</u></b>.</i></string>
+    <string name="login_social_title">O iniciar sesión con:</string>
+    <string name="login_button">Iniciar Sesión</string>
+
+    <string name="cd_google">Iniciar sesión con Google</string>
+    <string name="cd_facebook">Iniciar sesión con Facebook</string>
+    <string name="cd_apple">Iniciar sesión con Apple</string>
+    <string name="cd_x">Iniciar sesión con X</string>
 </resources>
