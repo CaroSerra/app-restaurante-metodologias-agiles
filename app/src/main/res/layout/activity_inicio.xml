@@ -15,7 +15,6 @@
         android:layout_height="match_parent"
         android:background="@color/map_background">
 
-        <!-- Mi ubicación -->
         <ImageButton
             android:id="@+id/btnUbicacion"
             android:layout_width="44dp"
@@ -27,7 +26,6 @@
             android:scaleType="fitCenter"
             android:src="@drawable/ic_ubicacion" />
 
-        <!-- Banderas de restaurantes -->
         <ImageButton
             android:id="@+id/btnBandera1"
             android:layout_width="44dp"
@@ -65,7 +63,7 @@
             android:src="@drawable/ic_bandera" />
     </FrameLayout>
 
-    <!-- ===== PARTE SUPERIOR: buscador + Comparar + Favoritos ===== -->
+    <!-- ===== PARTE SUPERIOR ===== -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -92,8 +90,8 @@
                 android:id="@+id/etBuscar"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_marginStart="12dp"
+                android:layout_weight="1"
                 android:background="@null"
                 android:hint="@string/inicio_buscar_hint"
                 android:imeOptions="actionSearch"
@@ -116,7 +114,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp">
+            android:layout_marginTop="8dp">
 
             <LinearLayout
                 android:id="@+id/btnComparar"
@@ -130,12 +128,11 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
-                    android:contentDescription="@null"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/inicio_comparar"
                     android:src="@drawable/ic_comparar" />
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -150,16 +147,16 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="39dp"
-                    android:layout_height="39dp"
-                    android:contentDescription="@null"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/inicio_favoritos"
                     android:src="@drawable/ic_favoritos" />
-
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>
 
-    <!-- ===== PANEL INFERIOR (plegado / desplegado) ===== -->
+    <!-- ===== PANEL INFERIOR ===== -->
     <LinearLayout
         android:id="@+id/bottomSheet"
         android:layout_width="match_parent"
@@ -194,14 +191,90 @@
                 android:background="@color/neutral_950" />
         </LinearLayout>
 
+        <!-- Cabecera del modo comparar (oculta al principio) -->
+        <LinearLayout
+            android:id="@+id/llCabeceraComparar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="8dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvSeleccionados"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/btnCancelarComparar"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cd_cerrar"
+                android:padding="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_cerrar" />
+        </LinearLayout>
+
+        <!-- Lista de restaurantes -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRestaurantes"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:clipToPadding="false"
             android:paddingHorizontal="8dp"
+            android:paddingTop="4dp"
             android:paddingBottom="16dp"
             tools:listitem="@layout/item_restaurante" />
+
+        <!-- Comparación (oculta al principio) -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/svComparacion"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_comparacion"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <include
+                    android:id="@+id/comparacion1"
+                    layout="@layout/item_comparacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="216dp" />
+
+                <include
+                    android:id="@+id/comparacion2"
+                    layout="@layout/item_comparacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="216dp"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
+
+    <!-- Botón Comparar que flota justo encima del panel -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCompararFlotante"
+        style="@style/Widget.App.Button.Primary"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:text="@string/comparar_button"
+        android:visibility="gone"
+        app:layout_anchor="@id/bottomSheet"
+        app:layout_anchorGravity="top|center_horizontal" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

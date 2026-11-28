@@ -37,4 +37,16 @@
     <string name="cd_desplegar">Desplegar lista de restaurantes</string>
     <string name="cd_reportar">Reportar</string>
     <string name="cd_favorito_add">Añadir a favoritos</string>
+
+    <!-- Comparar -->
+    <string name="comparar_button">Comparar</string>
+    <string name="comparacion_instruccion">Selecciona 2 restaurantes</string>
+    <string name="comparacion_titulo">Comparación</string>
+    <string name="comparacion_maximo">Solo puedes comparar 2 restaurantes</string>
+    <string name="platos_aptos">Cantidad de platos aptos</string>
+    <string name="cd_cerrar">Cerrar</string>
+    <plurals name="restaurantes_seleccionados">
+        <item quantity="one">%d restaurante seleccionado</item>
+        <item quantity="other">%d restaurantes seleccionados</item>
+    </plurals>
 </resources>

@@ -51,4 +51,6 @@
     <color name="divider">@color/verde_950</color>
 
     <color name="map_background">#E8E9F1</color>
+
+    <color name="comparacion_fondo">#EEF1F3</color>
 </resources>

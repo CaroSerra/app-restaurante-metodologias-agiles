@@ -11,16 +11,39 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RestauranteAdapter extends RecyclerView.Adapter<RestauranteAdapter.ViewHolder> {
 
-    private List<Restaurante> listaRestaurantes;
-    private Context context;
+    public static final int MAX_SELECCION = 2;
 
-    public RestauranteAdapter(Context context, List<Restaurante> listaRestaurantes) {
+    // La Activity se entera de cuántos hay seleccionados
+    public interface OnSeleccionListener {
+        void onSeleccionCambiada(int cantidad);
+    }
+
+    private List<Restaurante> listaRestaurantes;
+    private List<Restaurante> seleccionados = new ArrayList<>();
+    private Context context;
+    private OnSeleccionListener listener;
+    private boolean modoSeleccion = false;
+
+    public RestauranteAdapter(Context context, List<Restaurante> listaRestaurantes, OnSeleccionListener listener) {
         this.context = context;
         this.listaRestaurantes = listaRestaurantes;
+        this.listener = listener;
+    }
+
+    // Activa/desactiva el modo comparar y limpia la selección
+    public void setModoSeleccion(boolean modoSeleccion) {
+        this.modoSeleccion = modoSeleccion;
+        seleccionados.clear();
+        notifyDataSetChanged();
+    }
+
+    public List<Restaurante> getSeleccionados() {
+        return seleccionados;
     }
 
     @NonNull
@@ -35,14 +58,34 @@ public class RestauranteAdapter extends RecyclerView.Adapter<RestauranteAdapter.
         Restaurante restaurante = listaRestaurantes.get(position);
 
         holder.tvNombre.setText(restaurante.getNombre());
-        holder.tvHorarioDireccion.setText(restaurante.getHorario() + " " + restaurante.getDireccion());
-        holder.tvValoracion.setText(estrellas(restaurante.getValoracion()));
+        holder.tvHorarioDireccion.setText(restaurante.getHorarioDireccion());
+        holder.tvValoracion.setText(restaurante.getEstrellas());
+
+        // Borde verde gordo si está seleccionado
+        if (seleccionados.contains(restaurante)) {
+            holder.itemView.setBackgroundResource(R.drawable.bg_tarjeta_seleccionada);
+        } else {
+            holder.itemView.setBackgroundResource(R.drawable.bg_tarjeta);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: abrir detalle del restaurante (Busqueda/Restaurante Menu)
-                Toast.makeText(context, restaurante.getNombre(), Toast.LENGTH_SHORT).show();
+                if (modoSeleccion) {
+                    if (seleccionados.contains(restaurante)) {
+                        seleccionados.remove(restaurante);
+                    } else if (seleccionados.size() < MAX_SELECCION) {
+                        seleccionados.add(restaurante);
+                    } else {
+                        Toast.makeText(context, R.string.comparacion_maximo, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    notifyItemChanged(holder.getBindingAdapterPosition());
+                    listener.onSeleccionCambiada(seleccionados.size());
+                } else {
+                    // TODO: abrir detalle del restaurante (Busqueda/Restaurante Menu)
+                    Toast.makeText(context, restaurante.getNombre(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -64,15 +107,6 @@ public class RestauranteAdapter extends RecyclerView.Adapter<RestauranteAdapter.
     @Override
     public int getItemCount() {
         return listaRestaurantes.size();
-    }
-
-    // Convierte 4 en "★★★★☆"
-    private String estrellas(int valoracion) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 5; i++) {
-            sb.append(i < valoracion ? "★" : "☆");
-        }
-        return sb.toString();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
