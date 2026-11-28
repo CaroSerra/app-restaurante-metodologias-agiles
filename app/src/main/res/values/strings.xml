@@ -49,4 +49,27 @@
         <item quantity="one">%d restaurante seleccionado</item>
         <item quantity="other">%d restaurantes seleccionados</item>
     </plurals>
+
+    <!-- Favoritos -->
+    <string name="favoritos_titulo">Favoritos</string>
+    <string name="favoritos_vacio">Todavía no tienes restaurantes favoritos</string>
+    <string name="favorito_anadido">Añadido a favoritos</string>
+    <string name="favorito_eliminado">Eliminado de favoritos</string>
+    <string name="favorito_resenas">Reseñas:</string>
+    <string name="favorito_horario">Horario:</string>
+    <string name="cd_volver">Volver</string>
+    <string name="cd_eliminar">Eliminar de favoritos</string>
+
+    <!-- Detalle restaurante -->
+    <string name="tab_menu">Menú</string>
+    <string name="tab_resenas">Reseñas</string>
+    <string name="menu_vacio">No hay platos en este rango de precio</string>
+    <string name="resena_anadir"><u>Añadir comentario</u></string>
+    <string name="resena_dialog_hint">Escribe tu comentario</string>
+    <string name="resena_publicar">Publicar</string>
+    <string name="resena_publicada">Comentario publicado</string>
+    <string name="resena_sin_puntuacion">Toca las estrellas para puntuar</string>
+    <string name="resena_sin_texto">Escribe un comentario</string>
+    <string name="resena_anonimo">Anónimo</string>
+    <string name="cancelar">Cancelar</string>
 </resources>

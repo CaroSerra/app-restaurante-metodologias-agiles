@@ -18,24 +18,23 @@ public class RestauranteAdapter extends RecyclerView.Adapter<RestauranteAdapter.
 
     public static final int MAX_SELECCION = 2;
 
-    // La Activity se entera de cuántos hay seleccionados
-    public interface OnSeleccionListener {
+    public interface OnRestauranteListener {
         void onSeleccionCambiada(int cantidad);
+        void onAbrirDetalle(Restaurante restaurante);
     }
 
     private List<Restaurante> listaRestaurantes;
     private List<Restaurante> seleccionados = new ArrayList<>();
     private Context context;
-    private OnSeleccionListener listener;
+    private OnRestauranteListener listener;
     private boolean modoSeleccion = false;
 
-    public RestauranteAdapter(Context context, List<Restaurante> listaRestaurantes, OnSeleccionListener listener) {
+    public RestauranteAdapter(Context context, List<Restaurante> listaRestaurantes, OnRestauranteListener listener) {
         this.context = context;
         this.listaRestaurantes = listaRestaurantes;
         this.listener = listener;
     }
 
-    // Activa/desactiva el modo comparar y limpia la selección
     public void setModoSeleccion(boolean modoSeleccion) {
         this.modoSeleccion = modoSeleccion;
         seleccionados.clear();
@@ -61,12 +60,15 @@ public class RestauranteAdapter extends RecyclerView.Adapter<RestauranteAdapter.
         holder.tvHorarioDireccion.setText(restaurante.getHorarioDireccion());
         holder.tvValoracion.setText(restaurante.getEstrellas());
 
-        // Borde verde gordo si está seleccionado
         if (seleccionados.contains(restaurante)) {
             holder.itemView.setBackgroundResource(R.drawable.bg_tarjeta_seleccionada);
         } else {
             holder.itemView.setBackgroundResource(R.drawable.bg_tarjeta);
         }
+
+        // Corazón: opaco si es favorito, semitransparente si no
+        boolean favorito = FavoritosHelper.esFavorito(context, restaurante.getId());
+        holder.btnFavorito.setAlpha(favorito ? 1f : 0.4f);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,20 +85,22 @@ public class RestauranteAdapter extends RecyclerView.Adapter<RestauranteAdapter.
                     notifyItemChanged(holder.getBindingAdapterPosition());
                     listener.onSeleccionCambiada(seleccionados.size());
                 } else {
-                    // TODO: abrir detalle del restaurante (Busqueda/Restaurante Menu)
-                    Toast.makeText(context, restaurante.getNombre(), Toast.LENGTH_SHORT).show();
+                    listener.onAbrirDetalle(restaurante);
                 }
             }
         });
 
-        holder.btnReportar.setOnClickListener(new View.OnClickListener() {
+        holder.btnFavorito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, R.string.proximamente, Toast.LENGTH_SHORT).show();
+                boolean ahora = FavoritosHelper.alternar(context, restaurante.getId());
+                Toast.makeText(context, ahora ? R.string.favorito_anadido : R.string.favorito_eliminado,
+                        Toast.LENGTH_SHORT).show();
+                notifyItemChanged(holder.getBindingAdapterPosition());
             }
         });
 
-        holder.btnFavorito.setOnClickListener(new View.OnClickListener() {
+        holder.btnReportar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, R.string.proximamente, Toast.LENGTH_SHORT).show();

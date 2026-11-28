@@ -71,7 +71,6 @@
         android:paddingHorizontal="24dp"
         android:paddingTop="24dp">
 
-        <!-- Barra de búsqueda -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -110,11 +109,12 @@
                 android:src="@drawable/ic_perfil" />
         </LinearLayout>
 
-        <!-- Comparar y Favoritos -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="1dp">
 
             <LinearLayout
                 android:id="@+id/btnComparar"
@@ -191,7 +191,7 @@
                 android:background="@color/neutral_950" />
         </LinearLayout>
 
-        <!-- Cabecera del modo comparar (oculta al principio) -->
+        <!-- Cabecera con X (comparar y detalle) -->
         <LinearLayout
             android:id="@+id/llCabeceraComparar"
             android:layout_width="match_parent"
@@ -234,7 +234,7 @@
             android:paddingBottom="16dp"
             tools:listitem="@layout/item_restaurante" />
 
-        <!-- Comparación (oculta al principio) -->
+        <!-- Comparación -->
         <androidx.core.widget.NestedScrollView
             android:id="@+id/svComparacion"
             android:layout_width="match_parent"
@@ -262,6 +262,181 @@
                     android:layout_width="match_parent"
                     android:layout_height="216dp"
                     android:layout_marginTop="12dp" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- Detalle del restaurante -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/svDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16dp">
+
+                <include
+                    android:id="@+id/detalleTarjeta"
+                    layout="@layout/item_restaurante"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginBottom="0dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabsDetalle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        app:tabIconTint="@color/tab_icon_color"
+                        app:tabIndicatorColor="@color/verde_950"
+                        app:tabIndicatorFullWidth="true"
+                        app:tabInlineLabel="false"
+                        app:tabSelectedTextColor="@color/verde_950"
+                        app:tabTextColor="@color/neutral_650">
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:icon="@drawable/ic_menu"
+                            android:text="@string/tab_menu" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:icon="@drawable/ic_resenas"
+                            android:text="@string/tab_resenas" />
+                    </com.google.android.material.tabs.TabLayout>
+
+                    <!-- Pestaña MENÚ -->
+                    <LinearLayout
+                        android:id="@+id/llMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="48dp"
+                            android:paddingTop="12dp">
+
+                            <TextView
+                                android:id="@+id/tvPrecioMin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/neutral_650"
+                                android:textSize="12sp" />
+
+                            <com.google.android.material.slider.RangeSlider
+                                android:id="@+id/rsPrecio"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:stepSize="1"
+                                android:valueFrom="1"
+                                android:valueTo="100"
+                                app:haloColor="@color/verde_450"
+                                app:labelBehavior="gone"
+                                app:thumbColor="@color/verde_950"
+                                app:trackColorActive="@color/verde_950"
+                                app:trackColorInactive="@color/neutral_250" />
+
+                            <TextView
+                                android:id="@+id/tvPrecioMax"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/neutral_650"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llPlatosMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/verde_350"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="48dp"
+                            android:paddingBottom="12dp" />
+
+                        <TextView
+                            android:id="@+id/tvMenuVacio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:text="@string/menu_vacio"
+                            android:textColor="@color/neutral_650"
+                            android:textSize="14sp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <!-- Pestaña RESEÑAS -->
+                    <LinearLayout
+                        android:id="@+id/llResenas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/verde_350"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical"
+                            android:paddingVertical="12dp">
+
+                            <RatingBar
+                                android:id="@+id/rbNuevaResena"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:numStars="5"
+                                android:progressBackgroundTint="@color/neutral_250"
+                                android:progressTint="@color/amarillo_950"
+                                android:rating="0"
+                                android:secondaryProgressTint="@color/amarillo_950"
+                                android:stepSize="1" />
+
+                            <TextView
+                                android:id="@+id/tvAnadirComentario"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="?attr/selectableItemBackground"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:padding="8dp"
+                                android:text="@string/resena_anadir"
+                                android:textColor="@color/neutral_650"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/verde_550" />
+
+                        <LinearLayout
+                            android:id="@+id/llListaResenas"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
