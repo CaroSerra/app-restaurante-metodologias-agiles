@@ -19,4 +19,10 @@
     <string name="registro_apellido_hint">Apellido</string>
     <string name="registro_button">Registrar</string>
     <string name="registro_ok">¡Su cuenta ha sido creada con éxito!</string>
+
+    <!-- Validaciones -->
+    <string name="error_campos_vacios">Rellena todos los campos</string>
+    <string name="error_email_invalido">Introduce un email válido</string>
+    <string name="error_login">Email o contraseña incorrectos</string>
+    <string name="proximamente">Próximamente</string>
 </resources>
