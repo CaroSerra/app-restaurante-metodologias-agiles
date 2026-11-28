@@ -25,4 +25,16 @@
     <string name="error_email_invalido">Introduce un email válido</string>
     <string name="error_login">Email o contraseña incorrectos</string>
     <string name="proximamente">Próximamente</string>
+
+    <!-- Inicio -->
+    <string name="inicio_buscar_hint">Buscar...</string>
+    <string name="inicio_comparar">Comparar</string>
+    <string name="inicio_favoritos">Favoritos</string>
+    <string name="cd_buscar">Buscar</string>
+    <string name="cd_perfil">Perfil</string>
+    <string name="cd_mi_ubicacion">Mi ubicación</string>
+    <string name="cd_restaurante_mapa">Restaurante en el mapa</string>
+    <string name="cd_desplegar">Desplegar lista de restaurantes</string>
+    <string name="cd_reportar">Reportar</string>
+    <string name="cd_favorito_add">Añadir a favoritos</string>
 </resources>

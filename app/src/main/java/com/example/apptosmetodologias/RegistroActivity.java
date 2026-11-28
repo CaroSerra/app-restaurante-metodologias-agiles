@@ -39,7 +39,7 @@ public class RegistroActivity extends AppCompatActivity {
             public void onClick(View v) {
                 nombreR = etNombre.getText().toString().trim();
                 apellidoR = etApellido.getText().toString().trim();
-                emailR = etEmail.getText().toString().trim();
+                emailR = etEmail.getText().toString().trim().toLowerCase();
                 passwordR = etPassword.getText().toString().trim();
 
                 if (nombreR.isEmpty() || apellidoR.isEmpty() || emailR.isEmpty() || passwordR.isEmpty()) {
@@ -56,10 +56,7 @@ public class RegistroActivity extends AppCompatActivity {
                     Toast.makeText(RegistroActivity.this, R.string.registro_ok, Toast.LENGTH_SHORT).show();
 
                     // TODO: ir a AlergenosActivity cuando esté hecha
-                    // Intent i = new Intent(RegistroActivity.this, AlergenosActivity.class);
-                    // i.putExtra("nombre", nombreR);
-                    // startActivity(i);
-                    finish(); // de momento vuelve al login
+                    finish(); // vuelve al login, que ya mostrará este email
                 }
             }
         });

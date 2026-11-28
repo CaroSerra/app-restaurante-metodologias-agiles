@@ -49,4 +49,6 @@
     <color name="text_hint">@color/neutral_550</color>
     <color name="text_placeholder">#717070</color>
     <color name="divider">@color/verde_950</color>
+
+    <color name="map_background">#E8E9F1</color>
 </resources>

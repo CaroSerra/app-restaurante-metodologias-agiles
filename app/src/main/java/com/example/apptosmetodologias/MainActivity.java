@@ -23,13 +23,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvCrearCuenta;
     private ImageButton btnGoogle, btnFacebook, btnApple, btnX;
     private String emailR, passwordR;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        SharedPreferences prefs = getSharedPreferences("datos", MODE_PRIVATE);
+        prefs = getSharedPreferences("datos", MODE_PRIVATE);
 
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
@@ -40,23 +41,23 @@ public class MainActivity extends AppCompatActivity {
         btnApple = findViewById(R.id.btnApple);
         btnX = findViewById(R.id.btnX);
 
-        // Si ya se registró, rellenamos el email
-        etEmail.setText(prefs.getString("email", ""));
-
         btnIniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                emailR = etEmail.getText().toString().trim();
+                emailR = etEmail.getText().toString().trim().toLowerCase();
                 passwordR = etPassword.getText().toString().trim();
+
+                String emailGuardado = prefs.getString("email", "");
+                String passwordGuardado = prefs.getString("password", "");
 
                 if (emailR.isEmpty() || passwordR.isEmpty()) {
                     Toast.makeText(MainActivity.this, R.string.error_campos_vacios, Toast.LENGTH_SHORT).show();
-                } else if (!emailR.equals(prefs.getString("email", ""))
-                        || !passwordR.equals(prefs.getString("password", ""))) {
+                } else if (!emailR.equals(emailGuardado) || !passwordR.equals(passwordGuardado)) {
                     Toast.makeText(MainActivity.this, R.string.error_login, Toast.LENGTH_SHORT).show();
                 } else {
-                    // TODO: cambiar por la pantalla de inicio (mapa) cuando esté hecha
-                    Toast.makeText(MainActivity.this, "Bienvenido/a " + prefs.getString("nombre", ""), Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(MainActivity.this, InicioActivity.class);
+                    startActivity(i);
+                    finish(); // para que "atrás" no vuelva al login
                 }
             }
         });
@@ -86,5 +87,13 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    // Se ejecuta cada vez que se muestra el login (también al volver del registro)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        etEmail.setText(prefs.getString("email", ""));
+        etPassword.setText("");
     }
 }

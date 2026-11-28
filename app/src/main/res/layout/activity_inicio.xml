@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/map_background"
+    tools:context=".InicioActivity">
+
+    <!-- ===== MAPA (provisional) ===== -->
+    <FrameLayout
+        android:id="@+id/mapContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/map_background">
+
+        <!-- Mi ubicación -->
+        <ImageButton
+            android:id="@+id/btnUbicacion"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="158dp"
+            android:layout_marginTop="200dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/cd_mi_ubicacion"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_ubicacion" />
+
+        <!-- Banderas de restaurantes -->
+        <ImageButton
+            android:id="@+id/btnBandera1"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="263dp"
+            android:layout_marginTop="198dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/cd_restaurante_mapa"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_bandera" />
+
+        <ImageButton
+            android:id="@+id/btnBandera2"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="310dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/cd_restaurante_mapa"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_bandera" />
+
+        <ImageButton
+            android:id="@+id/btnBandera3"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="272dp"
+            android:layout_marginTop="310dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/cd_restaurante_mapa"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_bandera" />
+    </FrameLayout>
+
+    <!-- ===== PARTE SUPERIOR: buscador + Comparar + Favoritos ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="24dp">
+
+        <!-- Barra de búsqueda -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_barra_busqueda"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="@string/cd_buscar"
+                android:src="@drawable/ic_search" />
+
+            <EditText
+                android:id="@+id/etBuscar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:background="@null"
+                android:hint="@string/inicio_buscar_hint"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/neutral_650"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/btnPerfil"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cd_perfil"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_perfil" />
+        </LinearLayout>
+
+        <!-- Comparar y Favoritos -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp">
+
+            <LinearLayout
+                android:id="@+id/btnComparar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_comparar" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnFavoritos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="39dp"
+                    android:layout_height="39dp"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_favoritos" />
+
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- ===== PANEL INFERIOR (plegado / desplegado) ===== -->
+    <LinearLayout
+        android:id="@+id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_panel"
+        android:orientation="vertical"
+        app:behavior_expandedOffset="130dp"
+        app:behavior_fitToContents="false"
+        app:behavior_halfExpandedRatio="0.4"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="48dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <!-- Asa (=) -->
+        <LinearLayout
+            android:id="@+id/handle"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:contentDescription="@string/cd_desplegar"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="22dp"
+                android:layout_height="2dp"
+                android:background="@color/neutral_950" />
+
+            <View
+                android:layout_width="22dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/neutral_950" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRestaurantes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingHorizontal="8dp"
+            android:paddingBottom="16dp"
+            tools:listitem="@layout/item_restaurante" />
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
